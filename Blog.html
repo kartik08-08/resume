@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vlogs & Blogs Calendar</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate On Scroll CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, #b5179e 0%, #4361ee 100%);
+            min-height: 100vh;
+        }
+        header {
+            background: rgba(58,12,163,0.95);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(58,12,163,0.08);
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+        }
+        nav h1 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            position: relative;
+        }
+        nav a:hover {
+            color: #f72585;
+        }
+        .calendar-section {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: rgba(255,255,255,0.7);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(67,97,238,0.13);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: fadeInUp 1s;
+        }
+        .calendar-section h2 {
+            color: #3a0ca3;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .calendar-picker {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .calendar-picker input[type="date"] {
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            border: 1px solid #4361ee;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .calendar-card {
+            background: rgba(255,255,255,0.85);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(58,12,163,0.08);
+            padding: 1.5rem;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.2);
+            margin: 0 auto;
+            max-width: 400px;
+        }
+        .calendar-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 32px rgba(181,23,158,0.13);
+        }
+        .calendar-date {
+            color: #b5179e;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .vlog-preview, .blog-preview {
+            margin-bottom: 1.2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e7ff;
+        }
+        .vlog-preview:last-child, .blog-preview:last-child {
+            border-bottom: none;
+        }
+        .vlog-thumb {
+            width: 100%;
+            max-width: 220px;
+            border-radius: 12px;
+            margin-bottom: 0.7rem;
+            box-shadow: 0 2px 8px rgba(67,97,238,0.07);
+        }
+        .vlog-title, .blog-title {
+            font-family: 'Montserrat', Arial, sans-serif;
+            color: #4361ee;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        .vlog-tags, .blog-tags {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.7rem;
+        }
+        .vlog-tag, .blog-tag {
+            background: #f72585;
+            color: #fff;
+            padding: 0.2rem 0.7rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .blog-tag {
+            background: #4361ee;
+        }
+        .calendar-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #4361ee 60%, #f72585 100%);
+            color: #fff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 18px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(67,97,238,0.13);
+            margin-top: 0.5rem;
+        }
+        .calendar-btn:hover {
+            background: linear-gradient(90deg, #f72585 60%, #4361ee 100%);
+            transform: scale(1.05);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @media (max-width: 900px) {
+            .calendar-grid {
+                grid-template-columns: 1fr;
+            }
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .calendar-section {
+                padding: 1rem;
+            }
+        }
+        footer {
+            background: rgba(58,12,163,0.95);
+            color: #fff;
+            text-align: center;
+            padding: 1.2rem 0;
+            border-radius: 24px 24px 0 0;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        footer a {
+            color: #fff;
+            margin: 0 0.5rem;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: #f72585;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>My Portfolio Hub</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="coding-solutions.html">Coding Solutions</a></li>
+                <li><a href="Blog.html">Vlogs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="darkModeToggle">🌙</button></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="calendar-section" data-aos="fade-up">
+        <h2><i class="fas fa-calendar-alt"></i> Vlogs & Blogs Calendar</h2>
+        <div class="calendar-picker">
+            <label for="calendar-date"><b>Select Date:</b></label>
+            <input type="date" id="calendar-date" value="2025-08-01">
+        </div>
+        <div id="calendar-content">
+            <!-- Dynamic content will appear here -->
+        </div>
+    </section>
+    <footer>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fas fa-envelope"></i></a>
+        <p>&copy; 2025 Your Name</p>
+    </footer>
+    <!-- Animate On Scroll JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Example data
+        const calendarData = {
+            "2025-08-01": {
+                vlog: {
+                    thumb: "assets/vlog-thumb.jpg",
+                    title: "How I Solved 100+ Coding Problems",
+                    tags: ["Coding", "Motivation"],
+                    link: "assets/featured-vlog.mp4"
+                },
+                blog: {
+                    title: "How to Learn DSA Fast",
+                    tags: ["Guide", "DSA"],
+                    link: "blog.html#post1"
+                }
+            },
+            "2025-07-20": {
+                vlog: {
+                    thumb: "assets/vlog2-thumb.jpg",
+                    title: "DSA Tips & Tricks",
+                    tags: ["DSA", "Tips"],
+                    link: "assets/vlog2.mp4"
+                },
+                blog: {
+                    title: "Top 10 Coding Mistakes",
+                    tags: ["Tips", "Coding"],
+                    link: "blog.html#post2"
+                }
+            }
+            // Add more dates as needed
+        };
+
+        function renderCalendarCard(date) {
+            const data = calendarData[date];
+            const container = document.getElementById('calendar-content');
+            if (!data) {
+                container.innerHTML = `<div class="calendar-card" style="background:rgba(255,255,255,0.85);border-radius:18px;box-shadow:0 2px 12px rgba(58,12,163,0.08);padding:1.5rem;text-align:center;position:relative;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,0.2);">
+                    <div class="calendar-date"><i class="fas fa-calendar-day"></i> ${date}</div>
+                    <div style="color:#b5179e;">No vlog or blog found for this date.</div>
+                </div>`;
+                return;
+            }
+            container.innerHTML = `
+                <div class="calendar-card" data-aos="fade-up">
+                    <div class="calendar-date"><i class="fas fa-calendar-day"></i> ${date}</div>
+                    <div class="vlog-preview">
+                        <img src="${data.vlog.thumb}" alt="Vlog Thumbnail" class="vlog-thumb">
+                        <div class="vlog-title">${data.vlog.title}</div>
+                        <div class="vlog-tags">
+                            ${data.vlog.tags.map(tag => `<span class="vlog-tag">${tag}</span>`).join('')}
+                        </div>
+                        <a href="${data.vlog.link}" class="calendar-btn" target="_blank"><i class="fas fa-play"></i> View Vlog</a>
+                    </div>
+                    <div class="blog-preview">
+                        <div class="blog-title">${data.blog.title}</div>
+                        <div class="blog-tags">
+                            ${data.blog.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
+                        </div>
+                        <a href="${data.blog.link}" class="calendar-btn" target="_blank"><i class="fas fa-book-open"></i> View Blog</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initial render
+        const dateInput = document.getElementById('calendar-date');
+        renderCalendarCard(dateInput.value);
+
+        // Update on date change
+        dateInput.addEventListener('change', function() {
+            renderCalendarCard(this.value);
+        });
+    </script>
+</body>
+</html>

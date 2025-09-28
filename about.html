@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: linear-gradient(120deg, #b5179e 0%, #4361ee 100%);
+            --card-bg: rgba(255,255,255,0.85);
+            --card-text: #22223b;
+            --accent: #4361ee;
+            --heading: #3a0ca3;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-bg: linear-gradient(120deg, #22223b 0%, #3a0ca3 100%);
+                --card-bg: rgba(34,34,59,0.95);
+                --card-text: #f8fafc;
+                --accent: #f72585;
+                --heading: #f8fafc;
+            }
+        }
+        body {
+            background: var(--primary-bg);
+            color: var(--card-text);
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+        header {
+            background: rgba(58,12,163,0.95);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(58,12,163,0.08);
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+        }
+        nav h1 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            position: relative;
+        }
+        nav a:hover {
+            color: #f72585;
+        }
+        .about-section {
+            max-width: 700px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(67,97,238,0.13);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--accent);
+        }
+        .about-section h2 {
+            color: var(--heading);
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .about-details {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--card-text);
+        }
+        .qualification-box {
+            background: linear-gradient(90deg, var(--accent) 60%, #f72585 100%);
+            color: #fff;
+            border-radius: 18px;
+            padding: 1.2rem 1.5rem;
+            margin: 2rem 0 1rem 0;
+            box-shadow: 0 2px 12px rgba(67,97,238,0.13);
+            font-size: 1.1rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .qualification-box i {
+            font-size: 2rem;
+        }
+        @media (max-width: 800px) {
+            .about-section {
+                padding: 1rem;
+            }
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        footer {
+            background: rgba(58,12,163,0.95);
+            color: #fff;
+            text-align: center;
+            padding: 1.2rem 0;
+            border-radius: 24px 24px 0 0;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        footer a {
+            color: #fff;
+            margin: 0 0.5rem;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: #f72585;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>My Portfolio Hub</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="coding-solutions.html">Coding Solutions</a></li>
+                <li><a href="Blog.html">Vlogs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="darkModeToggle">🌙</button></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="about-section">
+        <h2><i class="fas fa-user-graduate" style="color:var(--accent);"></i> About Me</h2>
+        <div class="about-details">
+            Hello! I'm Kartik, a passionate coder and web developer. I love solving problems, building web applications, and sharing knowledge with others.<br><br>
+            My journey started in 2021, and since then I've worked on various projects, participated in coding competitions, and continuously improved my skills.
+        </div>
+        <div class="qualification-box">
+            <i class="fas fa-graduation-cap"></i>
+            <div>
+                <strong>Qualification:</strong><br>
+                Bachelor’s in Computer Science<br>
+                XYZ University (2021-2025)
+            </div>
+        </div>
+        <div class="about-details">
+            <strong>Skills:</strong> Python, C++, Django, HTML5, CSS3, SQL, Git & Version Control<br><br>
+            <strong>Achievements:</strong> Solved 500+ coding problems, contributed to open-source, and built several web apps.<br><br>
+            <strong>Interests:</strong> Coding, blogging, vlogging, and learning new technologies.
+        </div>
+    </section>
+    <footer>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fas fa-envelope"></i></a>
+        <p>&copy; 2025 Kartik</p>
+    </footer>
+</body>
+</html>

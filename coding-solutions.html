@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Solutions</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: linear-gradient(120deg, #b5179e 0%, #4361ee 100%);
+            --card-bg: rgba(255,255,255,0.92);
+            --card-text: #22223b;
+            --accent: #4361ee;
+            --heading: #3a0ca3;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-bg: linear-gradient(120deg, #22223b 0%, #3a0ca3 100%);
+                --card-bg: rgba(34,34,59,0.97);
+                --card-text: #f8fafc;
+                --accent: #f72585;
+                --heading: #f8fafc;
+            }
+        }
+        body {
+            background: var(--primary-bg);
+            color: var(--card-text);
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+        body.dark-mode {
+            --primary-bg: linear-gradient(120deg, #22223b 0%, #3a0ca3 100%);
+            --card-bg: rgba(34,34,59,0.97);
+            --card-text: #f8fafc;
+            --accent: #f72585;
+            --heading: #f8fafc;
+        }
+        header {
+            background: rgba(58,12,163,0.95);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(58,12,163,0.08);
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            gap: 2.5rem;
+        }
+        nav h1 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.2rem;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            position: relative;
+        }
+        nav a:hover {
+            color: #f72585;
+        }
+        .main-title {
+            text-align: center;
+            color: var(--heading);
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2.2rem;
+            margin: 2.5rem 0 1.5rem 0;
+            letter-spacing: 1px;
+        }
+        .platform-section {
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 28px;
+            box-shadow: 0 8px 32px rgba(67,97,238,0.13);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--accent);
+        }
+        .platform-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .platform-header i {
+            font-size: 2.2rem;
+        }
+        .platform-header h2 {
+            color: var(--accent);
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        .question-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 450px;
+            overflow-y: auto;
+        }
+        .question-box {
+            max-width: 700px;
+            margin: 2rem auto;
+            background: var(--card-bg);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(67,97,238,0.13);
+            border: 2px solid var(--accent);
+            padding: 2rem 2rem 1rem 2rem;
+            position: relative;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        .question-item {
+            background: #fff;
+            color: var(--card-text);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(67,97,238,0.09);
+            margin-bottom: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+            border: 1px solid var(--accent);
+            position: relative;
+        }
+        .question-item:hover {
+            box-shadow: 0 8px 32px rgba(181,23,158,0.13);
+            transform: scale(1.02);
+        }
+        .question-title {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .question-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.7rem;
+        }
+        .question-tag {
+            background: #f72585;
+            color: #fff;
+            padding: 0.2rem 0.7rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        .question-desc {
+            font-size: 1rem;
+            color: #22223b;
+        }
+        .solution-content {
+            display: none;
+            margin-top: 1.2rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1rem 1.2rem 1.2rem 1.2rem;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(67,97,238,0.07);
+            font-family: 'Fira Mono','Consolas',monospace;
+            position: relative;
+            animation: fadeIn 0.5s;
+        }
+        .question-item.active .solution-content {
+            display: block;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(90deg, var(--accent) 60%, #f72585 100%);
+            color: #fff;
+            border: none;
+            padding: 0.4rem 1.1rem;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(67,97,238,0.13);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .copy-btn:hover {
+            background: linear-gradient(90deg, #f72585 60%, var(--accent) 100%);
+            transform: scale(1.08);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @media (max-width: 900px) {
+            .platform-section {
+                padding: 1rem;
+            }
+            nav {
+                flex-direction: column;
+                gap: 1.2rem;
+                align-items: flex-start;
+                padding: 1.2rem 1rem;
+            }
+            nav ul {
+                gap: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>My Portfolio Hub</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="coding-solutions.html">Coding Solutions</a></li>
+                <li><a href="Blog.html">Vlogs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="darkModeToggle">🌙</button></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main-title"><i class="fas fa-code"></i> Coding Solutions</div>
+    <div style="display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:2rem;">
+        <div style="background:var(--card-bg); border-radius:18px; border:1px solid var(--accent); color:var(--accent); font-size:1.08rem; font-family:'Montserrat',Arial,sans-serif; padding:0.7rem 1.5rem; box-shadow:0 2px 8px rgba(67,97,238,0.08); min-width:260px; text-align:center;">
+            <strong>What I am learning:</strong><br>
+            Practicing coding problems on LeetCode, GeeksforGeeks, and Codeforces to improve my problem-solving and programming skills.
+        </div>
+        <div style="background:var(--card-bg); border-radius:18px; border:1px solid var(--accent); color:var(--accent); font-size:1.08rem; font-family:'Montserrat',Arial,sans-serif; padding:0.7rem 1.5rem; box-shadow:0 2px 8px rgba(67,97,238,0.08); min-width:260px; text-align:center;">
+            <strong>Learning Resources:</strong>
+            <ul style="padding-left:1.2em; margin:0.5em 0 0 0; color:var(--card-text); font-size:1rem; text-align:left;">
+                <li><a href="https://leetcode.com/" target="_blank" style="color:var(--accent);">LeetCode</a></li>
+                <li><a href="https://www.geeksforgeeks.org/" target="_blank" style="color:var(--accent);">GeeksforGeeks</a></li>
+                <li><a href="https://codeforces.com/" target="_blank" style="color:var(--accent);">Codeforces</a></li>
+                <li><a href="https://www.youtube.com/c/AbdulBariLectures" target="_blank" style="color:var(--accent);">Abdul Bari (YouTube)</a></li>
+                <li><a href="https://cp-algorithms.com/" target="_blank" style="color:var(--accent);">CP Algorithms</a></li>
+            </ul>
+        </div>
+    </div>
+    <section class="platform-section">
+        <div class="platform-header">
+            <i class="fab fa-free-code-camp" style="color:#b5179e;"></i>
+            <h2>LeetCode</h2>
+        </div>
+        <!-- Fixed, scrollable question box -->
+        <div class="question-box">
+            <ul class="question-list">
+                <li class="question-item">
+                    <div class="question-title">
+                        <i class="fas fa-question-circle"></i> Two Sum
+                    </div>
+                    <div class="question-tags">
+                        <span class="question-tag">Array</span>
+                        <span class="question-tag">Easy</span>
+                    </div>
+                    <div class="question-desc">
+                        Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices of the two numbers such that they add up to <code>target</code>.
+                    </div>
+                    <div class="solution-content">
+                        <strong>Solution (Python):</strong>
+                        <pre id="leetcode1"><code>
+def twoSum(nums, target):
+    lookup = {}
+    for i, num in enumerate(nums):
+        if target - num in lookup:
+            return [lookup[target - num], i]
+        lookup[num] = i
+                        </code></pre>
+                        <button class="copy-btn" onclick="copyCode('leetcode1')"><i class="fas fa-copy"></i> Copy</button>
+                    </div>
+                </li>
+                <li class="question-item">
+                    <div class="question-title">
+                        <i class="fas fa-question-circle"></i> Longest Substring Without Repeating Characters
+                    </div>
+                    <div class="question-tags">
+                        <span class="question-tag">String</span>
+                        <span class="question-tag">Medium</span>
+                    </div>
+                    <div class="question-desc">
+                        Given a string, find the length of the longest substring without repeating characters.
+                    </div>
+                    <div class="solution-content">
+                        <strong>Solution (Python):</strong>
+                        <pre id="leetcode2"><code>
+def lengthOfLongestSubstring(s):
+    charSet = set()
+    left = 0
+    result = 0
+    for right in range(len(s)):
+        while s[right] in charSet:
+            charSet.remove(s[left])
+            left += 1
+        charSet.add(s[right])
+        result = max(result, right - left + 1)
+    return result
+                        </code></pre>
+                        <button class="copy-btn" onclick="copyCode('leetcode2')"><i class="fas fa-copy"></i> Copy</button>
+                    </div>
+                </li>
+                <!-- Add more <li class="question-item"> ... </li> for more LeetCode questions -->
+            </ul>
+        </div>
+    </section>
+    <section class="platform-section">
+        <div class="platform-header">
+            <i class="fas fa-leaf" style="color:#43a047;"></i>
+            <h2>GeeksforGeeks</h2>
+        </div>
+        <div style="max-height:340px;overflow-y:auto;padding-right:8px;">
+            <ul class="question-list">
+                <li class="question-item">
+                    <div class="question-title">
+                        <i class="fas fa-question-circle"></i> Reverse a Linked List
+                    </div>
+                    <div class="question-tags">
+                        <span class="question-tag">Linked List</span>
+                        <span class="question-tag">Easy</span>
+                    </div>
+                    <div class="question-desc">
+                        Given a linked list, reverse it and return the head of the modified list.
+                    </div>
+                    <div class="solution-content">
+                        <strong>Solution (Python):</strong>
+                        <pre id="gfg1"><code>
+def reverseList(head):
+    prev = None
+    curr = head
+    while curr:
+        next_node = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next_node
+    return prev
+                        </code></pre>
+                        <button class="copy-btn" onclick="copyCode('gfg1')"><i class="fas fa-copy"></i> Copy</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <!-- Add Codeforces platform section -->
+    <section class="platform-section">
+        <div class="platform-header">
+            <!-- Replace FontAwesome icon with a styled "CF" circle -->
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:2.2rem;height:2.2rem;border-radius:50%;background:linear-gradient(135deg,#1f8acb 60%,#ffd700 100%);color:#fff;font-weight:700;font-size:1.25rem;box-shadow:0 2px 8px rgba(31,138,203,0.13);font-family:'Montserrat',Arial,sans-serif;">CF</span>
+            <h2>Codeforces</h2>
+        </div>
+        <div style="max-height:340px;overflow-y:auto;padding-right:8px;">
+            <ul class="question-list">
+                <li class="question-item">
+                    <div class="question-title">
+                        <i class="fas fa-question-circle"></i> Two Numbers Sum (Similar to LeetCode Two Sum)
+                    </div>
+                    <div class="question-tags">
+                        <span class="question-tag">Array</span>
+                        <span class="question-tag">Implementation</span>
+                        <span class="question-tag">800</span>
+                    </div>
+                    <div class="question-desc">
+                        Given an array of integers <code>a</code> and an integer <code>target</code>, find indices of two elements whose sum is <code>target</code>. (Similar to LeetCode Two Sum)
+                    </div>
+                    <div class="solution-content">
+                        <strong>Solution (C++):</strong>
+                        <pre id="cf1"><code>
+#include &lt;iostream&gt;
+#include &lt;unordered_map&gt;
+#include &lt;vector&gt;
+using namespace std;
+vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; a, int target) {
+    unordered_map&lt;int,int&gt; mp;
+    for(int i=0;i&lt;a.size();++i) {
+        if(mp.count(target-a[i]))
+            return {mp[target-a[i]], i};
+        mp[a[i]] = i;
+    }
+    return {};
+}
+                        </code></pre>
+                        <button class="copy-btn" onclick="copyCode('cf1')"><i class="fas fa-copy"></i> Copy</button>
+                    </div>
+                </li>
+                <!-- Add more Codeforces questions here -->
+            </ul>
+        </div>
+    </section>
+    <script>
+        // Dropdown solution logic
+        document.querySelectorAll('.question-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                // Prevent toggling when clicking the copy button
+                if (e.target.classList.contains('copy-btn') || e.target.classList.contains('fa-copy')) return;
+                this.classList.toggle('active');
+            });
+        });
+        // Copy code function
+        function copyCode(id) {
+            const code = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(code);
+            alert('Code copied!');
+        }
+        // Dark mode toggle logic
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        function setDarkMode(on) {
+            if(on) {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                darkModeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        // Detect system or saved preference
+        (function() {
+            let theme = localStorage.getItem('theme');
+            if(!theme) {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            setDarkMode(theme === 'dark');
+        })();
+        darkModeToggle.addEventListener('click', function() {
+            setDarkMode(!document.body.classList.contains('dark-mode'));
+        });
+    </script>
+</body>
+</html>

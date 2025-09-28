@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio Hub</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate On Scroll CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(120deg, #b5179e 0%, #4361ee 100%);
+            min-height: 100vh;
+        }
+        header {
+            background: rgba(58,12,163,0.95);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(58,12,163,0.08);
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+        }
+        nav h1 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            position: relative;
+        }
+        nav a:hover {
+            color: #f72585;
+        }
+        nav button {
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: #fff;
+            transition: color 0.2s;
+        }
+        nav button:hover {
+            color: #f72585;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 0;
+            background: rgba(255,255,255,0.08);
+        }
+        .search-bar input {
+            padding: 0.7rem 1rem;
+            border-radius: 24px 0 0 24px;
+            border: none;
+            font-size: 1rem;
+            width: 250px;
+            outline: none;
+        }
+        .search-bar button {
+            padding: 0.7rem 1.2rem;
+            border-radius: 0 24px 24px 0;
+            border: none;
+            background: linear-gradient(90deg, #4361ee 60%, #f72585 100%);
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-bar button:hover {
+            background: linear-gradient(90deg, #f72585 60%, #4361ee 100%);
+        }
+        .hero {
+            margin: 3rem auto 2rem auto;
+            max-width: 500px;
+            background: rgba(255,255,255,0.18);
+            border-radius: 32px;
+            box-shadow: 0 8px 32px rgba(67,97,238,0.18);
+            text-align: center;
+            padding: 3rem 2rem 2rem 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: fadeIn 1.2s;
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 24px rgba(58,12,163,0.13);
+            margin-bottom: 1.2rem;
+            border: 4px solid #fff;
+        }
+        .hero h2 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+        .hero span {
+            color: #f72585;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 1.2rem;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #4361ee 60%, #f72585 100%);
+            color: #fff;
+            padding: 0.7rem 1.5rem;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(67,97,238,0.13);
+            margin-top: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::after {
+            content: "";
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, #f72585 0%, #4361ee 100%);
+            opacity: 0.2;
+            transition: left 0.4s;
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #f72585 60%, #4361ee 100%);
+            transform: scale(1.05);
+        }
+        .btn:hover::after {
+            left: 0;
+        }
+        .section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255,255,255,0.7);
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(58,12,163,0.07);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: fadeInUp 1s;
+        }
+        .section h2 {
+            color: #3a0ca3;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .card-container {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .card {
+            background: rgba(255,255,255,0.85);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(58,12,163,0.08);
+            padding: 2rem 1.5rem;
+            flex: 1 1 250px;
+            min-width: 250px;
+            max-width: 320px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 32px rgba(181,23,158,0.13);
+        }
+        .card h3 {
+            color: #4361ee;
+            margin-bottom: 0.7rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .card p {
+            color: #22223b;
+            margin-bottom: 1.2rem;
+        }
+        .card i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #b5179e;
+        }
+        .featured-vlog video {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(58,12,163,0.08);
+        }
+        .featured-code pre {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            overflow-x: auto;
+            box-shadow: 0 2px 8px rgba(67,97,238,0.07);
+        }
+        aside {
+            max-width: 900px;
+            margin: 2rem auto;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .recent-posts-widget, .popular-posts-widget, .progress-tracker, .newsletter-signup {
+            background: rgba(255,255,255,0.85);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(58,12,163,0.08);
+            padding: 1.2rem;
+            flex: 1 1 200px;
+            min-width: 200px;
+            margin-bottom: 1rem;
+        }
+        .recent-posts-widget h3, .popular-posts-widget h3, .progress-tracker h3, .newsletter-signup h3 {
+            color: #b5179e;
+            font-size: 1.2rem;
+            margin-bottom: 0.7rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .recent-posts-widget ul, .popular-posts-widget ul {
+            list-style: none;
+            padding: 0;
+        }
+        .recent-posts-widget li, .popular-posts-widget li {
+            margin-bottom: 0.5rem;
+        }
+        .recent-posts-widget a, .popular-posts-widget a {
+            color: #4361ee;
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+        .recent-posts-widget a:hover, .popular-posts-widget a:hover {
+            color: #b5179e;
+        }
+        .newsletter-signup input {
+            padding: 0.5rem 1rem;
+            border-radius: 24px;
+            border: 1px solid #b5179e;
+            font-size: 1rem;
+            width: 70%;
+            margin-bottom: 0.5rem;
+        }
+        .newsletter-signup button {
+            padding: 0.5rem 1.2rem;
+            border-radius: 24px;
+            border: none;
+            background: linear-gradient(90deg, #4361ee 60%, #f72585 100%);
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .newsletter-signup button:hover {
+            background: linear-gradient(90deg, #f72585 60%, #4361ee 100%);
+        }
+        footer {
+            background: rgba(58,12,163,0.95);
+            color: #fff;
+            text-align: center;
+            padding: 1.2rem 0;
+            border-radius: 24px 24px 0 0;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        footer a {
+            color: #fff;
+            margin: 0 0.5rem;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: #f72585;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @media (max-width: 900px) {
+            .card-container, aside {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .section, aside {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>My Portfolio Hub</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="coding-solutions.html">Coding Solutions</a></li>
+                <li><a href="Blog.html">Vlogs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="darkModeToggle">🌙</button></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="Search problems, vlogs, or blog posts..." id="globalSearch">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <section class="hero" data-aos="zoom-in">
+            <img src="assets/profile.jpg" alt="Profile Photo" class="profile-img">
+            <h2>Hello, I'm <span>Your Name</span></h2>
+            <p><i class="fas fa-code"></i> Coder &nbsp; | &nbsp; <i class="fas fa-lightbulb"></i> Problem Solver &nbsp; | &nbsp; <i class="fas fa-pen-nib"></i> Blogger</p>
+            <a href="contact.html" class="btn">Contact Me</a>
+        </section>
+        <section class="section" data-aos="fade-up">
+            <h2><i class="fas fa-rocket"></i> Why and When I Started My Coding Journey</h2>
+            <div style="background:rgba(255,255,255,0.85);border-radius:18px;box-shadow:0 4px 24px rgba(67,97,238,0.13);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.3);max-width:700px;margin:2rem auto;padding:2rem;">
+                <p style="font-size:1.15rem;line-height:1.7;color:#22223b;">
+                    My coding journey began in 2021, driven by curiosity and a desire to solve real-world problems. I was fascinated by how technology shapes our lives and wanted to create solutions that make a difference. 
+                    <br><br>
+                    Initially, I started with Python, building simple automation scripts and exploring web development. The thrill of seeing my code come to life motivated me to dive deeper into algorithms and data structures. 
+                    <br><br>
+                    Over time, coding became more than a skill—it became a passion. I participated in coding competitions, collaborated on open-source projects, and built web applications using Django and modern web technologies. 
+                    <br><br>
+                    Today, I continue to learn, solve new challenges, and share my experiences through blogs and tutorials, hoping to inspire others to start their own journeys.
+                </p>
+            </div>
+        </section>
+        <section class="section" data-aos="fade-up">
+            <h2><i class="fas fa-star"></i> Problem of the Day</h2>
+            <div class="featured-code-card" style="
+                background: rgba(255,255,255,0.85);
+                border-radius: 18px;
+                box-shadow: 0 4px 24px rgba(67,97,238,0.13);
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(255,255,255,0.3);
+                max-width: 600px;
+                margin: 2rem auto;
+                padding: 2rem;
+                position: relative;
+                ">
+                <div style="display:flex;gap:0.5rem;margin-bottom:1rem;">
+                    <span style="background:#4361ee;color:#fff;padding:0.3rem 0.8rem;border-radius:12px;font-size:0.9rem;">LeetCode</span>
+                    <span style="background:#b5179e;color:#fff;padding:0.3rem 0.8rem;border-radius:12px;font-size:0.9rem;">Array</span>
+                    <span style="background:#f72585;color:#fff;padding:0.3rem 0.8rem;border-radius:12px;font-size:0.9rem;">Easy</span>
+                </div>
+                <h3 style="color:#3a0ca3;font-family:'Montserrat',Arial,sans-serif;margin-bottom:1rem;">
+                    <i class="fas fa-lightbulb"></i> Two Sum (LeetCode #1)
+                </h3>
+                <p style="color:#22223b;margin-bottom:1rem;">
+                    <strong>Problem:</strong> Given an array of integers <code>nums</code> and an integer <code>target</code>, return indices of the two numbers such that they add up to <code>target</code>.
+                </p>
+                <pre id="codeBlock" style="
+                    background: linear-gradient(90deg,#e0e7ff 60%,#f8fafc 100%);
+                    padding:1.2rem;
+                    border-radius:12px;
+                    font-size:1.05rem;
+                    font-family:'Fira Mono','Consolas',monospace;
+                    overflow-x:auto;
+                    margin-bottom:1rem;
+                    box-shadow:0 2px 8px rgba(67,97,238,0.07);
+                    position:relative;
+                "><code style="color:#222;">
+<span style="color:#b5179e;">// LeetCode #1: Two Sum</span>
+<span style="color:#4361ee;">def</span> <span style="color:#f72585;">twoSum</span>(nums, target):
+    lookup = {}
+    <span style="color:#4361ee;">for</span> i, num <span style="color:#4361ee;">in</span> <span style="color:#f72585;">enumerate</span>(nums):
+        if target - num in lookup:
+            return [lookup[target - num], i]
+        lookup[num] = i
+</code></pre>
+                <button onclick="copyCode()" style="
+                    position:absolute;top:2rem;right:2rem;
+                    background:linear-gradient(90deg,#4361ee 60%,#f72585 100%);
+                    color:#fff;border:none;padding:0.5rem 1.2rem;
+                    border-radius:18px;cursor:pointer;font-size:1rem;
+                    box-shadow:0 2px 8px rgba(67,97,238,0.13);
+                    transition:background 0.2s;
+                "><i class="fas fa-copy"></i> Copy Code</button>
+                <a href="coding-solutions.html"margin-top:1.2rem;">See More Solutions</a>
+            </div>
+        </section>
+        <!-- Resume section in a 2x2 grid format, with icon colors matching the theme -->
+        <section class="section" data-aos="fade-up" id="resume" style="padding-top:2rem;">
+            <h2 style="text-align:center;color:var(--heading);font-family:'Montserrat',Arial,sans-serif;font-size:2rem;margin-bottom:2.5rem;">
+                <i class="fas fa-id-card" style="color:var(--accent);"></i> My Resume
+            </h2>
+            <div class="card-container" style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                gap: 2rem;
+                max-width: 600px;
+                margin: 0 auto 2rem auto;
+            ">
+                <a href="coding-skills.html" class="card" data-aos="fade-right" style="
+                    background: var(--card-bg);
+                    border-radius: 18px;
+                    box-shadow: 0 2px 12px rgba(67,97,238,0.13);
+                    padding: 2rem 1.2rem;
+                    text-align: center;
+                    backdrop-filter: blur(4px);
+                    border: 1px solid var(--accent);
+                    transition: transform 0.2s, box-shadow 0.2s;
+                    text-decoration: none;
+                    color: var(--card-text);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                " onmouseover="this.style.boxShadow='0 8px 32px rgba(181,23,158,0.13)';this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 2px 12px rgba(67,97,238,0.13)';this.style.transform='scale(1)';">
+                    <i class="fas fa-code" style="font-size:2.2rem;color:var(--accent);margin-bottom:0.7rem;transition:color 0.3s;"></i>
+                    <h3 style="color:var(--heading);font-family:'Montserrat',Arial,sans-serif;margin-bottom:0.7rem;">Coding Skills</h3>
+                    <p style="font-size:1rem;">Proficient in Python, C++, and web development. Experienced with Django.</p>
+                </a>
+                <a href="problems.html" class="card" data-aos="fade-up" style="
+                    background: var(--card-bg);
+                    border-radius: 18px;
+                    box-shadow: 0 2px 12px rgba(67,97,238,0.13);
+                    padding: 2rem 1.2rem;
+                    text-align: center;
+                    backdrop-filter: blur(4px);
+                    border: 1px solid var(--accent);
+                    transition: transform 0.2s, box-shadow 0.2s;
+                    text-decoration: none;
+                    color: var(--card-text);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                " onmouseover="this.style.boxShadow='0 8px 32px rgba(181,23,158,0.13)';this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 2px 12px rgba(67,97,238,0.13)';this.style.transform='scale(1)';">
+                    <i class="fas fa-puzzle-piece" style="font-size:2.2rem;color:var(--accent);margin-bottom:0.7rem;transition:color 0.3s;"></i>
+                    <h3 style="color:var(--heading);font-family:'Montserrat',Arial,sans-serif;margin-bottom:0.7rem;">Problem Solving</h3>
+                    <p style="font-size:1rem;">Active participant in coding competitions. Solved 500+ problems on LeetCode, Codeforces, and HackerRank.</p>
+                </a>
+                <a href="projects.html" class="card" data-aos="fade-left" style="
+                    background: var(--card-bg);
+                    border-radius: 18px;
+                    box-shadow: 0 2px 12px rgba(8, 48, 227, 0.13);
+                    padding: 2rem 1.2rem;
+                    text-align: center;
+                    backdrop-filter: blur(4px);
+                    border: 1px solid var(--accent);
+                    transition: transform 0.2s, box-shadow 0.2s;
+                    text-decoration: none;
+                    color: var(--card-text);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                " onmouseover="this.style.boxShadow='0 8px 32px rgba(181,23,158,0.13)';this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 2px 12px rgba(67,97,238,0.13)';this.style.transform='scale(1)';">
+                    <i class="fas fa-lightbulb" style="font-size:2.2rem;color:var(--accent);margin-bottom:0.7rem;transition:color 0.3s;"></i>
+                    <h3 style="color:var(--heading);font-family:'Montserrat',Arial,sans-serif;margin-bottom:0.7rem;">Projects</h3>
+                    <p style="font-size:1rem;">Developed web apps, automation tools, and contributed to open-source. See my blog for details.</p>
+                </a>
+                <a href="education.html" class="card" data-aos="fade-left" style="
+                    background: var(--card-bg);
+                    border-radius: 18px;
+                    box-shadow: 0 2px 12px rgba(67,97,238,0.13);
+                    padding: 2rem 1.2rem;
+                    text-align: center;
+                    backdrop-filter: blur(4px);
+                    border: 1px solid var(--accent);
+                    transition: transform 0.2s, box-shadow 0.2s;
+                    text-decoration: none;
+                    color: var(--card-text);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                " onmouseover="this.style.boxShadow='0 8px 32px rgba(181,23,158,0.13)';this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 2px 12px rgba(67,97,238,0.13)';this.style.transform='scale(1)';">
+                    <i class="fas fa-graduation-cap" style="font-size:2.2rem;color:var(--accent);margin-bottom:0.7rem;transition:color 0.3s;"></i>
+                    <h3 style="color:var(--heading);font-family:'Montserrat',Arial,sans-serif;margin-bottom:0.7rem;">Education</h3>
+                    <p style="font-size:1rem;">Bachelor’s in Computer Science, XYZ University (2021-2025).</p>
+                </a>
+            </div>
+            <div style="text-align:center; margin-top:2rem;">
+                <a href="assets/Your_Resume.pdf" class="btn" target="_blank" style="
+                    background: linear-gradient(90deg, #f72585 0%, #4361ee 100%);
+                    color: #fff;
+                    padding: 1rem 2.2rem;
+                    border-radius: 32px;
+                    text-decoration: none;
+                    font-weight: 700;
+                    font-size: 1.15rem;
+                    box-shadow: 0 4px 18px rgba(67,97,238,0.18), 0 1.5px 8px #f72585;
+                    letter-spacing: 1px;
+                    border: 2px solid #fff;
+                    transition: background 0.2s, transform 0.2s;
+                    display: inline-block;
+                " onmouseover="this.style.background='linear-gradient(90deg,#4361ee 0%,#f72585 100%)';this.style.transform='scale(1.07)';" onmouseout="this.style.background='linear-gradient(90deg,#f72585 0%,#4361ee 100%)';this.style.transform='scale(1)';">
+                    <i class="fas fa-file-download"></i> Download Resume
+                </a>
+            </div>
+        </section>
+        <aside>
+            <div class="recent-posts-widget">
+                <h3>Recent Posts</h3>
+                <ul>
+                    <li><a href="blog.html#post1">How to Learn DSA Fast</a></li>
+                    <li><a href="coding.html#problem42">LeetCode: Longest Substring</a></li>
+                    <li><a href="vlogs.html#vlog5">My Coding Journey</a></li>
+                </ul>
+            </div>
+            <div class="popular-posts-widget">
+                <h3>Popular Posts</h3>
+                <ul>
+                    <li><a href="blog.html#post2">Top 10 Coding Mistakes</a></li>
+                    <li><a href="coding.html#problem7">GFG: Array Rotation</a></li>
+                </ul>
+            </div>
+            <div class="progress-tracker">
+                <h3>Progress Tracker</h3>
+                <p>Problems Solved: <span id="problemsSolved">120</span></p>
+                <p>Categories Covered: <span id="categoriesCovered">8</span></p>
+            </div>
+            <div class="newsletter-signup">
+                <h3>Newsletter</h3>
+                <form>
+                    <input type="email" placeholder="Your email">
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fas fa-envelope"></i></a>
+        <p>&copy; 2025 Your Name</p>
+    </footer>
+    <!-- Animate On Scroll JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        // Dark/Light Mode Toggle
+        document.getElementById('darkModeToggle').onclick = function() {
+            document.body.classList.toggle('dark-mode');
+        };
+        // Progress Tracker Example
+        document.getElementById('problemsSolved').textContent = '120';
+        document.getElementById('categoriesCovered').textContent = '8';
+        function copyCode() {
+            const code = document.getElementById('codeBlock').innerText;
+            navigator.clipboard.writeText(code);
+            alert('Code copied!');
+        }
+    </script>
+</body>
+</html>

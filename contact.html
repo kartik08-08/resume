@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: linear-gradient(120deg, #b5179e 0%, #4361ee 100%);
+            --card-bg: rgba(255,255,255,0.85);
+            --card-text: #22223b;
+            --accent: #4361ee;
+            --heading: #3a0ca3;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-bg: linear-gradient(120deg, #22223b 0%, #3a0ca3 100%);
+                --card-bg: rgba(34,34,59,0.95);
+                --card-text: #f8fafc;
+                --accent: #f72585;
+                --heading: #f8fafc;
+            }
+        }
+        body {
+            background: var(--primary-bg);
+            color: var(--card-text);
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+        }
+        header {
+            background: rgba(58,12,163,0.95);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(58,12,163,0.08);
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+        }
+        nav h1 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            position: relative;
+        }
+        nav a:hover {
+            color: #f72585;
+        }
+        .contact-section {
+            max-width: 600px;
+            margin: 3rem auto 2rem auto;
+            padding: 2.5rem 2rem;
+            background: var(--card-bg);
+            border-radius: 28px;
+            box-shadow: 0 8px 32px rgba(67,97,238,0.13);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--accent);
+        }
+        .contact-section h2 {
+            color: var(--heading);
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 2.2rem;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+        .contact-details {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--card-text);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--accent);
+            font-size: 1rem;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: #fff;
+            color: var(--card-text);
+            resize: vertical;
+        }
+        .contact-form textarea {
+            min-height: 90px;
+        }
+        .contact-form button {
+            background: linear-gradient(90deg, var(--accent) 60%, #f72585 100%);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 18px;
+            border: none;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(67,97,238,0.13);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .contact-form button:hover {
+            background: linear-gradient(90deg, #f72585 60%, var(--accent) 100%);
+            transform: scale(1.05);
+        }
+        .social-links {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        .social-links a {
+            display: inline-block;
+            margin: 0 0.7rem;
+            font-size: 2rem;
+            color: var(--accent);
+            background: #fff;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(67,97,238,0.13);
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .social-links a:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: scale(1.15);
+        }
+        @media (max-width: 800px) {
+            .contact-section {
+                padding: 1rem;
+            }
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        footer {
+            background: rgba(58,12,163,0.95);
+            color: #fff;
+            text-align: center;
+            padding: 1.2rem 0;
+            border-radius: 24px 24px 0 0;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+        footer a {
+            color: #fff;
+            margin: 0 0.5rem;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: #f72585;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>My Portfolio Hub</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="coding-solutions.html">Coding Solutions</a></li>
+                <li><a href="Blog.html">Vlogs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button id="darkModeToggle">🌙</button></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="contact-section">
+        <h2><i class="fas fa-paper-plane" style="color:var(--accent);"></i> Contact Me</h2>
+        <div class="contact-details">
+            Feel free to reach out for collaborations, questions, or just to connect!<br>
+            You can use the form below or connect with me on social media.
+        </div>
+        <form class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
+        <div class="social-links">
+            <a href="https://instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:your@email.com" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+    </section>
+    <footer>
+        <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="mailto:your@email.com"><i class="fas fa-envelope"></i></a>
+        <p>&copy; 2025 Kartik</p>
+    </footer>
+</body>
+</html>
